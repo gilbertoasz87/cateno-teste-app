@@ -21,19 +21,6 @@ export class IndiceService {
     // private messageService: MessageService,
     private oauthService: OAuthService) { }
 
-  update(indice: IndiceEntity): Observable<IndiceEntity> {
-    /*const token = this.oauthService.getAccessToken();
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token })
-    };*/
-
-    return this.http.put<IndiceEntity>(this.indicesApiUrl, indice
-      /*, { headers: { 'Authorization': 'Bearer ' + token }}*/ /*httpOptions*/)
-      .pipe(
-         catchError(this.handleError<IndiceEntity>('atualizar indice', indice))
-      );
-  }
-
   /** GET indices from the server */
   getIndices(code: string): Observable<IndiceEntity[]> {
 
