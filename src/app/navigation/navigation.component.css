@@ -1,0 +1,10 @@
+.example-container {
+    height: 75%;
+    margin: 15px;
+}
+
+.center {
+    margin: auto;
+    padding: 50px;
+    text-align: left !important;
+} 

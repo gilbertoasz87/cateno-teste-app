@@ -1,0 +1,94 @@
+
+<mat-form-field>
+  <mat-label>Filter Country</mat-label>
+  <input   placeholder="Filtro"
+           aria-label="Country"
+           matInput
+           [formControl]="countryControl"
+           [matAutocomplete]="auto">
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option *ngFor="let option of countries" [value]="option.id" (onSelectionChange)="applyFilter(option.id)">
+      {{option.id}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<mat-divider></mat-divider>
+
+&nbsp;
+
+<mat-card *ngIf="isLoading" class="spinner">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+</mat-card>
+
+<div class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
+
+    <!-- Indicator Column -->
+    <ng-container matColumnDef="indicatorId">
+      <th mat-header-cell *matHeaderCellDef> ID Indicator </th>
+      <td mat-cell *matCellDef="let element"> {{element.indicator.id}} </td>
+    </ng-container>
+
+     <!-- Indicator Name Column -->
+     <ng-container matColumnDef="indicatorValue">
+      <th mat-header-cell *matHeaderCellDef> Name Indicator </th>
+      <td mat-cell *matCellDef="let element"> {{element.indicator.value}} </td>
+    </ng-container>
+
+    <!-- Country Column -->
+    <ng-container matColumnDef="countryId">
+      <th mat-header-cell *matHeaderCellDef> ID Country </th>
+      <td mat-cell *matCellDef="let element"> {{element.country.id}} </td>
+    </ng-container>
+
+     <!-- Country Name Column -->
+     <ng-container matColumnDef="countryValue">
+      <th mat-header-cell *matHeaderCellDef> Name Country </th>
+      <td mat-cell *matCellDef="let element"> {{element.country.value}} </td>
+    </ng-container>
+
+    <!-- countryiso3code Column -->
+    <ng-container matColumnDef="countryiso3code">
+      <th mat-header-cell *matHeaderCellDef> Country Iso3Code </th>
+      <td mat-cell *matCellDef="let element"> {{element.countryiso3code}} </td>
+    </ng-container>
+
+    <!-- date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <!-- value Column -->
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+    </ng-container>
+      
+    <!-- unit Column -->
+    <ng-container matColumnDef="unit">
+      <th mat-header-cell *matHeaderCellDef> Unit </th>
+      <td mat-cell *matCellDef="let element"> {{element.unit}} </td>
+    </ng-container>
+
+    <!-- obs_status Column -->
+    <ng-container matColumnDef="obs_status">
+      <th mat-header-cell *matHeaderCellDef> Obs status </th>
+      <td mat-cell *matCellDef="let element"> {{element.obs_status}} </td>
+    </ng-container>
+
+    <!-- decimal Column -->
+    <ng-container matColumnDef="decimal">
+      <th mat-header-cell *matHeaderCellDef> Decimal </th>
+      <td mat-cell *matCellDef="let element"> {{element.decimal}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>

@@ -1,0 +1,20 @@
+<mat-toolbar color="null">
+  <mat-toolbar-row *ngIf="isLogged()">
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+   <!--<span><img src="./assets/images/logo-x.png"></span>-->
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer mode="side" opened role="navigation">
+    <mat-nav-list *ngIf="isLogged()">
+      <a mat-list-item routerLink='/home'>Home</a>
+      <a mat-list-item routerLink='/indices'>Indices</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="center">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
